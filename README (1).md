@@ -1,7 +1,7 @@
 # Federated Machine Learning Framework for Real-Time Cyber Threat Intelligence Detection and Multi-Class Threat Response
 
 > Final-year B.Tech project (AI & Data Science) — Team 13
-> **Status: In Progress (~50% complete, expected completion in ~2 months)**
+> **Status: In Progress (~25% complete — data collection and preprocessing done; detection, alerting/response, and dashboard modules in development. Expected completion in ~2 months.)**
 
 ## Overview
 
@@ -52,6 +52,16 @@ The model is trained on a network intrusion dataset with traffic labeled across 
 - Label encoding of categorical features (e.g. `last_flag`)
 - Feature scaling with `StandardScaler` on key numeric traffic features (`count`, `dst_host_diff_srv_rate`, `dst_host_same_src_port_rate`, `dst_host_srv_count`, `same_srv_rate`)
 - Correlation analysis to guide feature selection
+
+## Repository Structure
+
+```
+├── notebooks/
+│   └── 01_eda_preprocessing.ipynb   # Dataset loading, EDA, cleaning, encoding, scaling
+├── README.md
+```
+
+> More modules (packet capture, detection pipeline, alerting/response, dashboard) will be added here as they're completed.
 
 ## My Contribution
 
