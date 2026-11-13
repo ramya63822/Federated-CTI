@@ -1,0 +1,35 @@
+follow these steps to configure your environment and launch the Flask application:
+1. Prerequisite:-
+Ensure Python 3.12.10 is installed on your Windows system. 
+2. Open Terminal:-
+Open PowerShell or Command Prompt inside the project directory:
+Or open 
+3. Create Virtual Environment:-
+Run the following command to isolate project dependencies:
+python -m venv venv
+4. Activate Virtual Environment:-
+Execute the activation script:
+- In PowerShell:
+  ./venv/scripts/Activate
+5. Install Dependencies:-
+Install the required packages from requirements.txt:
+pip install -r requirements.txt
+6. Launch the Application:-
+Run the main server script:
+python app.py
+7. Open in Browser:-
+Once startup completes, open your browser and navigate to:
+http://127.0.0.1:5000/
+
+
+
+NEW:- 
+
+How to know your laptop’s IP Address 
+On the laptop, open Command Prompt, run ipconfig, and note the IPv4 Address (something like 192.168.x.xxx).
+
+Your laptop’s IP is 192.168.X.XXX, on the “Wi-Fi” adapter, which is the only one connected.
+
+Connect your phone to the same Wi-Fi network as the laptop.
+On the phone’s browser, open: http://192.168.X.XXX:5000/login <-- replace X with your ip address
+Keep Live Visitors open on the laptop. A new row with the phone’s IP (probably 192.168.0.x) should appear within 2 seconds.
