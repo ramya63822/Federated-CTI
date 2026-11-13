@@ -1,106 +1,263 @@
-# Federated Machine Learning Framework for Real-Time Cyber Threat Intelligence Detection and Multi-Class Threat Response
+# 🛡️ Federated Quantum-Classical Framework for Real-Time Cyber Threat Detection and Multi-Class Threat Response
 
-> Final-year B.Tech project (AI & Data Science) — Team 13
-> **Status: In Progress (~25% complete — data collection and preprocessing done; detection, alerting/response, and dashboard modules in development. Expected completion in ~2 months.)**
+An intelligent cybersecurity framework integrating **Federated Learning, Quantum Machine Learning, Classical Machine Learning, and Blockchain** to detect, classify, and record network security threats.
 
-## Overview
+## 📌 Overview
 
-Traditional, signature-based intrusion detection systems struggle to keep up with evolving cyber threats such as DDoS attacks, malware, phishing, and network intrusions, and often produce high false-alarm rates that require manual analysis. This project builds an intelligent, ML-based cybersecurity framework that:
+Cyberattacks are becoming increasingly sophisticated, making traditional intrusion detection approaches challenging to scale and adapt.
 
-- Captures live network packets and traffic in real time
-- Extracts relevant network traffic features
-- Uses a trained Logistic Regression model to classify traffic as **Normal**, **Neptune Attack**, or **Satan Attack**
-- Generates real-time alerts on detected threats
-- Logs attack details (timestamp, source IP, protocol, attack type)
-- Supports automated response actions such as suspicious IP identification and blocking
-- Surfaces all of this through an interactive monitoring dashboard
+This project explores a hybrid AI-based cybersecurity framework that combines Federated Learning and Quantum Machine Learning with classical classification models to identify malicious network traffic while supporting distributed learning and secure threat logging.
 
-The goal is to bring network traffic monitoring, intrusion detection, ML-based prediction, and automated response together into a single, real-time cybersecurity framework — reducing reliance on manual incident response and static, signature-based defenses.
+The system processes network traffic datasets, applies quantum-inspired feature enhancement, performs hierarchical threat classification, and records detected intrusions on an Ethereum blockchain. It also provides email notifications to alert users about potential security threats.
 
-## Problem Statement
+## 🎯 Objectives
 
-Static, signature-based security solutions are ineffective against unknown and evolving attack patterns. As network traffic volume grows, identifying malicious activity in real time while keeping detection accuracy high becomes harder, and delayed detection can lead to unauthorized access, data breaches, service disruption, and financial loss. This project addresses that gap with a machine learning-based detection and response framework capable of continuous monitoring, accurate classification, real-time alerting, and automated response.
+- Develop an intelligent network intrusion detection framework.
+- Explore Federated Learning for collaborative model training across distributed clients.
+- Integrate Quantum Machine Learning techniques for feature representation.
+- Implement binary and multi-class threat classification.
+- Identify specific attack categories from network traffic.
+- Maintain tamper-evident intrusion records using blockchain.
+- Generate automated email alerts for detected threats.
 
-## System Architecture
+## 🏗️ System Architecture
 
-The system is organized into the following modules:
+The framework combines distributed learning, quantum-classical machine learning, and blockchain-based security logging.
 
-| Module | Responsibility |
+### Overall Workflow
+
+1. **Network Traffic Input:** Upload or stream network traffic CSV files containing CICIoT2023 network flow features.
+2. **Data Preprocessing:** Apply StandardScaler and Principal Component Analysis (PCA) to transform 46 input features into four principal components.
+3. **Quantum Feature Enhancement:** Use a four-qubit ZZFeatureMap and kernel-based feature processing, incorporating Nyström approximation.
+4. **Threat Classification:** Apply two XGBoost classifiers for binary and multi-class threat identification.
+5. **Blockchain Logging:** Generate SHA-256 hashes of detected intrusion records and submit them to an Ethereum smart contract through Web3.py.
+6. **Email Notifications:** Trigger SMTP-based email alerts containing detected attack information.
+
+### Federated Learning Component
+
+The project also incorporates Federated Learning as part of its distributed learning approach.
+
+Federated Learning enables participating clients to collaboratively improve a model while keeping their local training data within their respective environments.
+
+The federated component is intended to support distributed cybersecurity intelligence without requiring direct centralization of raw network traffic.
+
+## 🧠 Machine Learning Components
+
+### 1. Quantum Machine Learning
+
+The quantum feature processing pipeline includes:
+
+- Four-qubit quantum feature mapping.
+- ZZFeatureMap for quantum data encoding.
+- Fidelity-based quantum kernel experimentation.
+- Nyström approximation for kernel computation.
+
+### 2. Classical Machine Learning
+
+**XGBoost** is used for hierarchical threat classification.
+
+| Model | Function |
 |---|---|
-| **Network Packet Capture** | Captures live packets and network traffic using Scapy |
-| **Data Preprocessing & Feature Extraction** | Cleans captured data and extracts traffic features for prediction |
-| **Machine Learning Detection** | Applies a trained Logistic Regression model to classify network traffic |
-| **Threat Detection & Alert** | Identifies attacks and generates real-time security alerts |
-| **Response & IP Blocking** | Detects suspicious IPs and supports automated response actions |
-| **Logging & Reporting** | Stores attack logs, prediction results, and monitoring reports |
-| **Dashboard & Visualization** | Flask/Streamlit interface for real-time monitoring and analysis |
+| Binary XGBoost Classifier | Distinguishes normal traffic from malicious traffic. |
+| Multi-Class XGBoost Classifier | Identifies the specific attack category among 12 classes. |
 
-## Tech Stack
+### 3. Federated Learning
 
-- **Language:** Python
-- **Traffic Capture:** Scapy
-- **ML / Data:** Scikit-learn (Logistic Regression), Pandas, NumPy
-- **Dashboard:** Flask / Streamlit
-- **Model Artifact:** `model.pkl`
+The federated learning component supports collaborative learning across distributed environments while keeping raw network traffic data local.
 
-## Dataset & Preprocessing
+## 🔗 Blockchain Integration
 
-The model is trained on a network intrusion dataset with traffic labeled across Normal, Neptune Attack, and Satan Attack classes. Preprocessing included:
+The framework incorporates Ethereum-based blockchain logging to maintain tamper-evident intrusion records.
 
-- Missing-value analysis and imputation
-- Removing constant/zero-variance columns
-- Label encoding of categorical features (e.g. `last_flag`)
-- Feature scaling with `StandardScaler` on key numeric traffic features (`count`, `dst_host_diff_srv_rate`, `dst_host_same_src_port_rate`, `dst_host_srv_count`, `same_srv_rate`)
-- Correlation analysis to guide feature selection
+**Implementation components:**
+- SHA-256 hashing
+- Ethereum smart contracts (`Intrusion.sol`)
+- Web3.py
+- Ganache (development environment, where configured)
 
-## Repository Structure
+Detected intrusion information is hashed and submitted to the smart contract, providing a verifiable record of logged security events.
 
-```
+## 📊 Experimental Results
+
+The available project presentation records the following result:
+
+| Metric | Result |
+|---|---:|
+| Binary Classification Test Accuracy | 98.4775% |
+| Input Network Features | 46 |
+| PCA Components | 4 |
+| Quantum Feature Map | 4 Qubits |
+| Multi-Class Attack Categories | 12 |
+
+**Note:** The reported accuracy refers to the recorded binary classification experiment. It should not be interpreted as the independently verified performance of the complete federated quantum-classical pipeline.
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Web Framework & Database | Flask, SQLite |
+| Machine Learning | XGBoost, Scikit-learn |
+| Quantum Computing | Qiskit / Quantum Computing Framework |
+| Quantum Feature Mapping | ZZFeatureMap |
+| Kernel Methods | Fidelity Kernel, Nyström Approximation |
+| Data Processing | Pandas, NumPy |
+| Dimensionality Reduction | PCA |
+| Blockchain | Ethereum, Solidity |
+| Blockchain Integration | Web3.py |
+| Smart Contract Testing | Ganache |
+| Notifications | SMTP |
+| Dataset | CICIoT2023 |
+| Development | Jupyter Notebook |
+
+## 📂 Project Structure
+
+```text
+Federated-CTI/
+│
+├── blockchain/
+│   ├── blockchain.py                   # Web3.py smart contract interaction
+│   └── contract/
+│       └── Intrusion.sol               # Solidity smart contract for intrusion logging
+│
+├── datasets/
+│   ├── simulation/                     # Real-time traffic simulation CSVs (sim_1 - sim_5)
+│   └── upload/                         # Sample traffic upload CSVs (sample_1 - sample_5)
+│
 ├── notebooks/
-│   └── 01_eda_preprocessing.ipynb   # Dataset loading, EDA, cleaning, encoding, scaling
-├── README.md
+│   └── 01_eda_preprocessing.ipynb      # Exploratory data analysis & preprocessing
+│
+├── routes/
+│   ├── auth.py                         # User authentication routes
+│   ├── blocked_ips.py                  # Automated IP blocking management
+│   ├── ledger.py                       # Blockchain audit ledger views
+│   ├── monitor.py                      # Real-time traffic monitoring routes
+│   ├── reports.py                      # CSV security report generation
+│   ├── settings.py                     # System configuration routes
+│   └── upload.py                       # Traffic CSV upload endpoints
+│
+├── services/
+│   ├── alert_service.py                # SMTP email alerting service
+│   ├── ip_service.py                   # Threat IP tracking & blocking logic
+│   └── ml_service.py                   # Quantum-classical inference pipeline
+│
+├── static/
+│   ├── reports/                        # Generated threat reports
+│   └── uploads/                        # Uploaded traffic files
+│
+├── templates/
+│   ├── components/                     # Navbar, sidebar, and alert popups
+│   ├── partials/                       # Dashboard sub-views (ledger, monitoring, stats, etc.)
+│   ├── dashboard.html                  # Main security monitoring dashboard
+│   ├── index.html                      # Landing page
+│   ├── login.html                      # Login page
+│   └── signup.html                     # Registration page
+│
+├── utils/
+│   └── database.py                     # SQLite database helpers
+│
+├── app.py                              # Flask application entry point
+├── config.py                           # Application configuration
+├── dataset.py                          # Dataset handling utilities
+├── deploy.py                           # Smart contract deployment script
+├── verify.py                           # Verification utilities
+├── QML.ipynb                           # Quantum Machine Learning experiments
+├── binary_model.pkl                    # Trained binary XGBoost classifier
+├── multi_model.pkl                     # Trained multi-class XGBoost classifier
+├── label_encoder.pkl                   # Target label encoder
+├── model_metrics.pkl                   # Saved evaluation metrics
+├── pca_quantum_reducer.pkl             # PCA dimensionality reducer
+├── quantum_feature_transformer.pkl     # Quantum feature map transformer
+├── scaler_standard.pkl                 # StandardScaler artifact
+├── requirements.txt                    # Python dependencies
+├── setup.bat                           # Windows setup script
+├── setup_instructions.md               # Detailed setup guide
+├── How_to_run.txt                      # Quick run instructions
+└── README.md
 ```
 
-> More modules (packet capture, detection pipeline, alerting/response, dashboard) will be added here as they're completed.
+## ⚙️ Installation and Setup
 
-## My Contribution
-
-- Built core system modules in Python — including the network packet capture logic (Scapy), feature extraction, and the Logistic Regression-based traffic classification pipeline
-- Implemented data preprocessing and exploratory data analysis on the network intrusion dataset (missing values, encoding, feature scaling)
-- Worked on system integration and the Flask/Streamlit dashboard, connecting detection, alerting, and the automated IP-blocking response into a single interface
-
-## Team
-
-| Name | Roll No. |
-|---|---|
-| Jesinth Kaghan | 23CU0320042 |
-| Kamil M | 23CU0320044 |
-| Ramya Sree S V | 23CU0320076 |
-| Deepak P | 23CU032112 |
-
-**Guide:** Ms. Abisheka Pon
-
-## Roadmap
-
-- [x] Dataset collection and exploratory data analysis
-- [x] Data preprocessing and feature engineering
-- [ ] Finalize and evaluate the Logistic Regression classification model
-- [ ] Complete real-time packet capture → detection pipeline integration
-- [ ] Automated alerting, logging, and IP-blocking response
-- [ ] Flask/Streamlit dashboard for live monitoring
-- [ ] Final testing and documentation
-
-## Getting Started
-
-> Setup instructions will be finalized as the build is completed. Typical flow:
+### 1. Clone the Repository
 
 ```bash
-git clone <repo-url>
-cd <repo-name>
-pip install -r requirements.txt
-python app.py
+git clone https://github.com
+cd Federated-CTI
 ```
 
-## License
+### 2. Create a Virtual Environment
 
-Academic project — Hindustan Institute of Science and Technology, Chennai (2023–2027).
+```bash
+python -m venv venv
+```
+
+Activate it:
+
+**Windows (PowerShell)**
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+**Windows (Command Prompt)**
+```cmd
+venv\Scripts\activate.bat
+```
+
+**Linux / macOS**
+```bash
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables & Blockchain
+
+Update your settings in `config.py` (or environment variables) with:
+
+- Ethereum / Ganache RPC endpoint.
+- Deployed smart contract address (`Intrusion.sol`) and ABI.
+- SMTP server credentials for automated email alerts.
+
+*(Note: Never commit private keys, passwords, or sensitive credentials to GitHub.)*
+
+### 5. Deploy Smart Contract & Run the Application
+
+1. Deploy the smart contract (if running locally with Ganache):
+   ```bash
+   python deploy.py
+   ```
+2. Start the Flask dashboard:
+   ```bash
+   python app.py
+   ```
+3. Open your browser and navigate to http://127.0.0.1:5000.
+
+🔬 Research Significance
+
+This project explores the intersection of:
+• Privacy-aware distributed machine learning.
+• Quantum-enhanced feature representation.
+• Hybrid quantum-classical classification.
+• Multi-class cybersecurity threat detection.
+• Blockchain-based security auditing.
+The integration aims to investigate how these technologies can contribute to intelligent and distributed cybersecurity monitoring systems.
+
+🚀 Future Enhancements
+
+• Evaluate federated aggregation strategies across heterogeneous clients.
+• Compare centralized and federated model performance.
+• Investigate quantum and classical feature representations under identical experimental conditions.
+• Improve performance on imbalanced network traffic datasets.
+• Evaluate detection latency and computational overhead.
+• Expand real-time threat monitoring and automated response capabilities.
+• Explore deployment on distributed edge environments.
+
+👩‍💻 Project Information
+
+Domain: Artificial Intelligence | Quantum Machine Learning | Federated Learning | Cybersecurity | Blockchain
+Dataset: CICIoT2023
+Project Type: Hybrid AI-Based Cybersecurity Research and Implementation
